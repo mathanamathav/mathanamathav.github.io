@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "CV"
+title: ""
 permalink: /cv/
 author_profile: true
 redirect_from:
@@ -11,54 +11,34 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+- PSG College of Technology, Coimbatore, India — Integrated M.Sc. Data Science; CGPA 8.67 (June 2019 – April 2024)
+- Adhyapana CBSE School, Madurai, India — Class XII (CBSE); Marks 93% (2018 – 2019)
 
-Work experience
+Experience
 ======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+- DataGenie — Jr. Data Scientist & Founding Engineer (Remote) (December 2023 – Present)
+  - Agentic AI chat application: Developed a core customer-facing chat application using LangChain and agent frameworks, serving as a primary interface for daily user interactions and driving customer engagement.
+  - Large-scale data engineering: Built robust PySpark-based data processing pipelines handling millions of records, optimizing ETL workflows for enterprise-scale data ingestion and transformation.
+  - Microservices architecture: Architected and deployed critical internal microservices including Metrics Service, Insights Service, and Airflow Service, enabling scalable application infrastructure and improved system reliability.
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+- ZeroDown — Software Engineer Intern (Remote) (June 2022 – December 2022)
+  - Real estate market intelligence: Engineered a data analytics prototype providing comprehensive visualizations and market insights across major US housing markets, enabling data-driven decision-making.
+  - Production ETL optimization: Developed and optimized enterprise-scale ETL pipelines, improving data processing efficiency and ensuring seamless integration across multiple data sources.
+  - Intelligent error monitoring: Designed an automated incident routing system that analyzes tracebacks to identify responsible developers, reducing debugging time and improving system reliability.
 
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
+
+Selected Projects
+======
+- IntersectX: Built an AI-powered investment research platform that enables faster, data-driven decisions via coordinated multi-agent analysis; Tech: Python, LangChain, FastAPI.
+- CodeForHer: Delivered a platform that supports guided learning and safer commutes through a personalized chat and voice assistant; Tech: FastAPI, LangChain, Streamlit.
+- DoodleDraw: Built a real-time sketch-recognition game that classifies doodles and provides instant in-browser feedback; Tech: TensorFlow, Django, JavaScript (Canvas).
+- Trust‑Me‑Bro: Built a web app that analyzes YouTube comments to estimate video credibility and flag risk; Tech: Django, YouTube Data API, Python, NLP.
+
 Skills
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+Python, PySpark, FastAPI, LangChain, Airflow, Azure, MongoDB, Flask
 
-Publications
+Achievements
 ======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+- Code For Her: Featured in coverage of Locus's Code For Her hackathon; shared publicly on LinkedIn.
+- IntersectX: Featured in coverage of the Global Agent Hackathon by Agno ([PR 126](https://github.com/global-agent-hackathon/global-agent-hackathon-may-2025/pull/126)).
