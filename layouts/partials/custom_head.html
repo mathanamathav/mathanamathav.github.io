@@ -1,0 +1,45 @@
+<!-- Custom overrides. Loaded after the theme's style.html, so these win the cascade.
+     1) Force a white background with black text (no automatic dark mode).
+     2) Sticky footer so the theme credit sits at the bottom of the viewport. -->
+<style>
+  :root {
+    --background-color: #fff;
+    --heading-color: #000;
+    --text-color: #000;
+    --link-color: #000;
+    --visited-color: #000;
+    --blockquote-color: #000;
+  }
+
+  /* Override the theme's dark-mode palette so the site stays white/black everywhere. */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background-color: #fff;
+      --heading-color: #000;
+      --text-color: #000;
+      --link-color: #000;
+      --visited-color: #000;
+      --blockquote-color: #000;
+    }
+  }
+
+  /* Underline links so they stay distinguishable without color. */
+  a {
+    text-decoration: underline;
+  }
+
+  /* Pin the footer to the bottom of the page even when content is short. */
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
+  footer {
+    margin-top: 2rem;
+  }
+</style>

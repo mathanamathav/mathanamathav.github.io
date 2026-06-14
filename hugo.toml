@@ -1,0 +1,25 @@
+baseURL = "https://mathanamathav.github.io/"
+languageCode = "en-us"
+title = "Mathana Mathav A.S"
+theme = "hugo-bearblog"
+
+[params]
+  description = "Developer."
+  dateFormat = "2006-01-02"
+  hideMadeWithLine = false
+
+[[menu.main]]
+  identifier = "home"
+  name = "Home"
+  url = "/"
+  weight = 1
+
+[[menu.main]]
+  identifier = "blog"
+  name = "Blog"
+  url = "/blog/"
+  weight = 2
+
+[caches]
+  [caches.images]
+    dir = ":cacheDir/images"
