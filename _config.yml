@@ -1,7 +1,0 @@
-title: Mathana Mathav A S
-description: "Developer."
-include:
-  - _pages
-collections:
-  blogs:
-    output: true
