@@ -22,6 +22,8 @@
 | Projects | Dropped — no projects page/section |
 | Deploy branch | `master` (work happens on `dev`; ship via PR `dev` → `master`) |
 | Custom CSS | None for now (no `custom_head.html`) |
+| Agent docs | `AGENTS.md` canonical (3b1b-style, fit to Hugo); `CLAUDE.md` = pointer to it |
+| License | Dual — MIT for code/templates, CC BY-NC 4.0 for blog content under `content/` |
 
 ---
 
@@ -32,6 +34,9 @@
 ├── .github/workflows/hugo.yaml
 ├── .gitignore                      # rewritten for Hugo
 ├── README.md                       # rewritten for Hugo
+├── AGENTS.md                       # canonical agent guide
+├── CLAUDE.md                       # pointer → AGENTS.md
+├── LICENSE                         # MIT (code)
 ├── hugo.toml                       # site config
 ├── content/
 │   ├── _index.md                   # home — short intro
@@ -216,6 +221,33 @@ GitHub repo → **Settings → Pages → Source = GitHub Actions**. Required bef
 ```
 
 ---
+
+## Agent docs
+
+Modeled on `3b1b/3Blue1Brown.com/AGENTS.md` (Background / Stack / Notes / Commands / Repo Structure / conventions), trimmed to fit a small Hugo site.
+
+`AGENTS.md` (canonical) covers:
+- **Background** — minimal personal site, portfolio + markdown blog, hosted on GitHub Pages.
+- **Stack** — Hugo extended, `hugo-bearblog` theme (submodule), GitHub Actions → Pages.
+- **Commands** — `brew install hugo`, `hugo server -D`, `hugo --gc --minify`, `git submodule update --init`.
+- **Repo structure** — `content/` (markdown), `hugo.toml`, `themes/`, `.github/workflows/`.
+- **Conventions** — content is markdown only; one `.md` = one page; blog posts in `content/blog/`; front matter `title`/`date`/`tags`; default theme CSS (no class soup); how to add a post/page.
+- **License note** — code MIT, content CC BY-NC 4.0.
+
+`CLAUDE.md` is a short pointer so Claude Code and other agents share one source of truth:
+```markdown
+# CLAUDE.md
+
+See [AGENTS.md](AGENTS.md) for stack, structure, commands, and conventions.
+```
+
+## License
+
+Dual license, stated in `LICENSE` + a "License" section in `README.md` and `AGENTS.md`:
+- **Code & templates** (config, workflow, theme overrides) — **MIT**. `LICENSE` holds the MIT text with copyright `© 2026 Mathana Mathav A S`.
+- **Blog content** (everything under `content/`) — **CC BY-NC 4.0** (reuse with attribution, non-commercial). Referenced by link (`https://creativecommons.org/licenses/by-nc/4.0/`), not vendored as full text.
+
+README "License" section spells out the split explicitly so the two-tier intent is unambiguous to a visitor.
 
 ## Local preview
 
