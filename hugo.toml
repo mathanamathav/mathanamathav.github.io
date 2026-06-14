@@ -1,12 +1,12 @@
 baseURL = "https://mathanamathav.github.io/"
 languageCode = "en-us"
-title = "Mathan"
+title = "Mathana Mathav A.S"
 theme = "hugo-bearblog"
 
 [params]
   description = "Developer."
   dateFormat = "2006-01-02"
-  hideMadeWithLine = true
+  hideMadeWithLine = false
 
 [[menu.main]]
   identifier = "home"
@@ -19,12 +19,6 @@ theme = "hugo-bearblog"
   name = "Blog"
   url = "/blog/"
   weight = 2
-
-[[menu.main]]
-  identifier = "cv"
-  name = "CV"
-  url = "/cv/"
-  weight = 3
 
 [caches]
   [caches.images]
