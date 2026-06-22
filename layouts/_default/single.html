@@ -1,0 +1,50 @@
+{{ define "main" }}
+{{ if eq .Type "blog" }}{{ if not .Params.menu }}
+<h1>{{ .Title }}</h1>
+<p>
+  <i>
+    <time datetime='{{ .Date.Format "2006-01-02" }}'>
+      {{ .Date.Format (default "02 Jan, 2006" .Site.Params.dateFormat) }}
+    </time>
+  </i>
+</p>
+{{ end }}{{ end }}
+
+{{/* Cover photo: any page-bundle resource named cover.* renders as a banner below
+     the title. Hugo's internal opengraph/twitter partials also auto-detect it for
+     the social card, so naming the file cover.jpg is all that's needed. */}}
+{{ $cover := .Resources.GetMatch "cover.*" }}
+{{ with $cover }}
+{{ $tw := .Width }}{{ if gt $tw 1440 }}{{ $tw = 1440 }}{{ end }}
+{{ $full := .Resize (printf "%dx webp q82" $tw) }}
+{{ $half := .Resize (printf "%dx webp q82" (div $tw 2)) }}
+<img src="{{ $full.RelPermalink }}"
+     srcset="{{ $half.RelPermalink }} {{ $half.Width }}w, {{ $full.RelPermalink }} {{ $full.Width }}w"
+     sizes="(max-width: 720px) 100vw, 720px"
+     width="{{ $full.Width }}" height="{{ $full.Height }}"
+     alt="{{ $.Title }}" class="post-cover"
+     fetchpriority="high" decoding="async" />
+{{ end }}
+
+{{/* Sticky table of contents — only for blog posts that actually have headings. */}}
+{{ if eq .Type "blog" }}{{ if .Fragments.Headings }}
+<details class="post-toc" open>
+  <summary>Contents</summary>
+  {{ .TableOfContents }}
+</details>
+{{ end }}{{ end }}
+
+<content>
+  {{ .Content }}
+</content>
+
+{{ if eq .Type "blog" }}{{ if (.Param "enablePostNavigator")}}
+{{- partial "post_navigator.html" . -}}
+{{ end }}{{ end }}
+
+<p>
+  {{ range (.GetTerms "tags") }}
+  <a href="{{ .Permalink }}">#{{ .LinkTitle }}</a>
+  {{ end }}
+</p>
+{{ end }}
