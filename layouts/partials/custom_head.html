@@ -78,6 +78,19 @@
     margin-bottom: 1.5rem;
   }
 
+  /* Subtle back link shown instead of the masthead on single blog posts. */
+  .back-link {
+    display: inline-block;
+    color: #6f6c61;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .back-link:hover {
+    color: var(--heading-color);
+    text-decoration: none;
+  }
+
   /* Post / list-page title: same size as the masthead wordmark. */
   main > h1 {
     font-size: 1.5rem;
@@ -124,20 +137,19 @@
   }
 
   /* Content images carry explicit width/height (for CLS); scale height with the
-     clamped column width so they aren't squished. */
+     clamped column width so they aren't squished. Rounded corners for polish. */
   content img {
     height: auto;
+    border-radius: 10px;
   }
 
-  /* Blog cover photo (rendered by the single.html override) — banner under title. */
-  .post-cover {
-    width: 100%;
-    max-height: 360px;
-    object-fit: cover;
-    border-radius: 10px;
-    border: 1px solid #d6d3c8;
-    margin: 0.4rem 0 1.8rem;
+  /* Auto-looping clips (video shortcode) match the content images. */
+  .post-video {
     display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin: 1.5rem 0;
   }
 
   /* Table of contents. Inline + collapsible by default (mobile). */

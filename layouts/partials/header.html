@@ -1,0 +1,10 @@
+{{/* On a single blog post, hide the masthead + nav and show a subtle back link.
+     Everywhere else, the normal wordmark + navigation. */}}
+{{ if and .IsPage (eq .Type "blog") }}
+<a href="{{ "blog" | relURL }}" class="back-link">&larr; Back</a>
+{{ else }}
+<a href="{{ "" | relURL }}" class="title">
+  <h2>{{ .Site.Title }}</h2>
+</a>
+<nav>{{- partial "nav.html" . -}}</nav>
+{{ end }}
