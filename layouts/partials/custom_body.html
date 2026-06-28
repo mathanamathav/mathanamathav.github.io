@@ -1,0 +1,49 @@
+<!-- Scroll-spy: highlight the current section in the table of contents while scrolling. -->
+<script>
+(function () {
+  var toc = document.querySelector(".post-toc");
+  if (!toc) return;
+
+  var links = Array.prototype.slice.call(toc.querySelectorAll('a[href^="#"]'));
+  if (!links.length) return;
+
+  var map = {};       // heading id -> toc link
+  var targets = [];   // heading elements, in document order
+  links.forEach(function (link) {
+    var id = decodeURIComponent(link.getAttribute("href").slice(1));
+    var el = document.getElementById(id);
+    if (el) { map[id] = link; targets.push(el); }
+  });
+  if (!targets.length) return;
+
+  targets.sort(function (a, b) {
+    return a.getBoundingClientRect().top - b.getBoundingClientRect().top;
+  });
+
+  var ticking = false;
+  function update() {
+    ticking = false;
+    var offset = 120; // a heading counts as "current" once it passes this from the top
+    var active = targets[0];
+    for (var i = 0; i < targets.length; i++) {
+      if (targets[i].getBoundingClientRect().top - offset <= 0) active = targets[i];
+      else break;
+    }
+    // near page bottom, force the last section active
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) {
+      active = targets[targets.length - 1];
+    }
+    links.forEach(function (l) { l.classList.remove("active"); });
+    var link = map[active.id];
+    if (link) link.classList.add("active");
+  }
+
+  function onScroll() {
+    if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+  update();
+})();
+</script>

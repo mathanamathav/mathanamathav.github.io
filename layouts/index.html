@@ -1,0 +1,7 @@
+{{/* Home page: title is just the site name (avoids "Name | Name" duplication). */}}
+{{ define "title" }}{{ .Site.Title }}{{ end }}
+{{ define "main" }}
+<content>
+{{ .Content }}
+</content>
+{{ end }}

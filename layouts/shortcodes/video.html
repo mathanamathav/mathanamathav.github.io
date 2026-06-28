@@ -1,0 +1,9 @@
+{{- /* {{< video src="basename" >}} — auto-looping, muted, GIF-like clip from page-bundle
+       <basename>.webm / <basename>.mp4 resources. */ -}}
+{{- $base := .Get "src" -}}
+{{- $webm := .Page.Resources.GetMatch (printf "%s.webm" $base) -}}
+{{- $mp4 := .Page.Resources.GetMatch (printf "%s.mp4" $base) -}}
+<video class="post-video" autoplay loop muted playsinline preload="metadata"{{ with .Get "label" }} aria-label="{{ . }}"{{ end }}>
+  {{- with $webm }}<source src="{{ .RelPermalink }}" type="video/webm">{{ end -}}
+  {{- with $mp4 }}<source src="{{ .RelPermalink }}" type="video/mp4">{{ end -}}
+</video>

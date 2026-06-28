@@ -1,31 +1,253 @@
 <!-- Custom overrides. Loaded after the theme's style.html, so these win the cascade.
-     1) Force a white background with black text (no automatic dark mode).
-     2) Sticky footer so the theme credit sits at the bottom of the viewport. -->
+     Palette + typography adapted from https://colbymchenry.github.io/codegraph/ —
+     a warm, monochrome "newsprint" look: cream paper, near-black warm ink, no accent color.
+     1) Warm cream background with warm near-black text (no automatic dark mode).
+     2) Heavy, tightly-tracked display headings.
+     3) Sticky footer so the theme credit sits at the bottom of the viewport.
+     4) Montserrat for body + headings. -->
+<link rel="canonical" href="{{ .Permalink }}" />
+<link rel="preload" href="/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-  :root {
-    --background-color: #fff;
-    --heading-color: #000;
-    --text-color: #000;
-    --link-color: #000;
-    --visited-color: #000;
-    --blockquote-color: #000;
+  /* Self-hosted Montserrat (variable, latin subset) — no third-party CDN. */
+  @font-face {
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 400 800;
+    font-display: swap;
+    src: url("/fonts/montserrat-latin.woff2") format("woff2");
   }
 
-  /* Override the theme's dark-mode palette so the site stays white/black everywhere. */
+  :root {
+    /* Wider content column + larger body text than the theme defaults. */
+    --width: 900px;
+    --font-scale: 1.1em;
+
+    /* Montserrat overrides the theme's Verdana */
+    --font-main: "Montserrat", sans-serif;
+    --font-secondary: "Montserrat", sans-serif;
+
+    /* codegraph warm palette */
+    --background-color: #f7f6f2;        /* paper */
+    --heading-color: #16150f;           /* ink */
+    --text-color: #2a281f;              /* warm dark body */
+    --link-color: #16150f;              /* ink — no blue accent */
+    --visited-color: #16150f;
+    --blockquote-color: #56544a;        /* ink-2, muted */
+    --code-background-color: #f1efe8;   /* paper-2 */
+    --code-color: #34322a;
+  }
+
+  /* Keep the warm light palette everywhere — no automatic dark mode. */
   @media (prefers-color-scheme: dark) {
     :root {
-      --background-color: #fff;
-      --heading-color: #000;
-      --text-color: #000;
-      --link-color: #000;
-      --visited-color: #000;
-      --blockquote-color: #000;
+      --background-color: #f7f6f2;
+      --heading-color: #16150f;
+      --text-color: #2a281f;
+      --link-color: #16150f;
+      --visited-color: #16150f;
+      --blockquote-color: #56544a;
+      --code-background-color: #f1efe8;
+      --code-color: #34322a;
     }
   }
 
-  /* Underline links so they stay distinguishable without color. */
+  /* Display headings: heavy weight, tight tracking, tight leading (codegraph hero). */
+  h1, h2, h3 {
+    color: var(--heading-color);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+  }
+  h1 {
+    line-height: 0.98;
+  }
+  h2, h3 {
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  /* Site masthead: a consistent wordmark on every page (theme's .title h1 rule
+     never applied because the markup is an <h2>). */
+  .title h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin: 0;
+  }
+  header {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Subtle back link shown instead of the masthead on single blog posts. */
+  .back-link {
+    display: inline-block;
+    color: #6f6c61;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .back-link:hover {
+    color: var(--heading-color);
+    text-decoration: none;
+  }
+
+  /* Post / list-page title: same size as the masthead wordmark. */
+  main > h1 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    margin: 0.2rem 0 0.3rem;
+  }
+
+  /* Content heading scale + vertical rhythm. Section headings sit clearly BELOW
+     the title size (browser defaults made h2 ~1.5em, larger than the title —
+     a hierarchy inversion). Extra top margin separates sections. */
+  content h2 {
+    font-size: 1.3rem;
+    margin: 2.5rem 0 0.6rem;
+  }
+  content h3 {
+    font-size: 1.12rem;
+    margin: 1.7rem 0 0.35rem;
+  }
+  content h2 + h3 {
+    margin-top: 0.8rem;
+  }
+
+  /* Navigation links (masthead/nav): ink, underline on hover only. */
   a {
+    text-decoration: none;
+  }
+  a:hover {
     text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* Body links: always visibly a link — warm accent + thick underline
+     (accessible ~5.6:1 on paper). Hover settles to ink. */
+  content a {
+    color: #a8432f;
+    text-decoration: underline;
+    text-decoration-color: #a8432f;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+  content a:hover {
+    color: var(--heading-color);
+    text-decoration-color: var(--heading-color);
+  }
+
+  /* Content images carry explicit width/height (for CLS); scale height with the
+     clamped column width so they aren't squished. Rounded corners for polish. */
+  content img {
+    height: auto;
+    border-radius: 10px;
+  }
+
+  /* Auto-looping clips (video shortcode) match the content images. */
+  .post-video {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin: 1.5rem 0;
+  }
+
+  /* Table of contents. Inline + collapsible by default (mobile). */
+  .post-toc {
+    margin: 0 0 2rem;
+    padding: 0.7rem 1.1rem;
+    background: #f1efe8;
+    border: 1px solid #d6d3c8;
+    border-radius: 8px;
+    font-size: 0.95rem;
+  }
+  .post-toc > summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--heading-color);
+    letter-spacing: -0.02em;
+  }
+  .post-toc #TableOfContents ul {
+    margin: 0.5rem 0 0;
+    padding-left: 1.1rem;
+  }
+  .post-toc #TableOfContents > ul {
+    padding-left: 0.2rem;
+  }
+  .post-toc #TableOfContents li {
+    margin: 0.15rem 0;
+    list-style: none;
+  }
+  /* Muted by default so the TOC doesn't compete with the article for attention
+     (still meets WCAG AA contrast against the paper background). */
+  .post-toc a {
+    color: #6f6c61;
+    transition: color 0.15s ease;
+  }
+  .post-toc a:hover {
+    color: var(--heading-color);
+  }
+  /* Only the current section is emphasised (set by scroll-spy in custom_body.html). */
+  .post-toc a.active {
+    color: var(--heading-color);
+    font-weight: 700;
+  }
+
+  /* Smooth anchor jumps + keep headings clear of the viewport top.
+     Respect users who ask for reduced motion. */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  content h1, content h2, content h3 {
+    scroll-margin-top: 1.5rem;
+  }
+
+  /* Wide screens: pin the TOC to the right of the centered content column. */
+  @media (min-width: 1360px) {
+    .post-toc {
+      position: fixed;
+      top: 8rem;
+      right: max(1rem, calc(50% - 670px));
+      width: 200px;
+      max-height: 78vh;
+      overflow-y: auto;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      border: none;
+      font-size: 0.88rem;
+    }
+    .post-toc > summary {
+      list-style: none;
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: #87847a;
+      pointer-events: none;
+    }
+    .post-toc > summary::-webkit-details-marker {
+      display: none;
+    }
+    .post-toc #TableOfContents a {
+      display: block;
+      padding-left: 0.6rem;
+      border-left: 2px solid transparent;
+    }
+    .post-toc #TableOfContents a.active {
+      border-left-color: var(--heading-color);
+    }
+  }
+
+  /* Warm hairline rules to match the paper. */
+  hr {
+    border: none;
+    border-top: 1px solid #d6d3c8;
+  }
+  blockquote {
+    border-left: 3px solid #d6d3c8;
   }
 
   /* Pin the footer to the bottom of the page even when content is short. */
@@ -43,3 +265,20 @@
     margin-top: 2rem;
   }
 </style>
+
+{{- /* Structured data for blog posts so search engines and AI agents get typed facts. */ -}}
+{{ if and .IsPage (eq .Type "blog") }}
+{{- $ld := dict
+  "@context" "https://schema.org"
+  "@type" "BlogPosting"
+  "headline" .Title
+  "datePublished" (.Date.Format "2006-01-02")
+  "dateModified" (.Lastmod.Format "2006-01-02")
+  "author" (dict "@type" "Person" "name" .Site.Title)
+  "url" .Permalink
+  "mainEntityOfPage" .Permalink
+  "description" (.Description | default (.Summary | plainify | chomp))
+-}}
+{{- with .Resources.GetMatch "cover.*" }}{{ $ld = merge $ld (dict "image" .Permalink) }}{{ end -}}
+<script type="application/ld+json">{{ $ld | jsonify (dict "indent" "  ") | safeJS }}</script>
+{{ end }}

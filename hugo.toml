@@ -2,6 +2,7 @@ baseURL = "https://mathanamathav.github.io/"
 languageCode = "en-us"
 title = "Mathana Mathav A.S"
 theme = "hugo-bearblog"
+enableRobotsTXT = true
 
 [params]
   description = "Developer."
@@ -23,3 +24,13 @@ theme = "hugo-bearblog"
 [caches]
   [caches.images]
     dir = ":cacheDir/images"
+
+# Emit /llms.txt (a curated, agent-readable index) alongside the home page.
+[outputs]
+  home = ["HTML", "RSS", "llms"]
+
+[outputFormats.llms]
+  mediaType = "text/plain"
+  baseName = "llms"
+  isPlainText = true
+  rel = "alternate"

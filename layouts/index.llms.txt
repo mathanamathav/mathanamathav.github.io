@@ -1,0 +1,15 @@
+# {{ .Site.Title }}
+
+> {{ with .Site.Params.description }}{{ . }}{{ end }}
+
+{{ with .Content }}{{ . | plainify | chomp }}
+
+{{ end }}## Blog posts
+{{ range (where .Site.RegularPages "Type" "blog").ByDate.Reverse }}
+- [{{ .Title }}]({{ .Permalink }}){{ with .Summary }}: {{ . | plainify | chomp | truncate 160 }}{{ end }}
+{{- end }}
+
+## Pages
+{{ range where .Site.RegularPages "Type" "page" }}
+- [{{ .Title }}]({{ .Permalink }})
+{{- end }}

@@ -1,0 +1,18 @@
+{{- /* Markdown image render hook: convert bundle images to WebP, make them
+       responsive, lazy-load off-screen ones, and emit width/height to avoid CLS. */ -}}
+{{- $img := .Page.Resources.GetMatch .Destination -}}
+{{- if $img -}}
+  {{- $max := 1100 -}}
+  {{- $tw := $img.Width -}}
+  {{- if gt $tw $max -}}{{- $tw = $max -}}{{- end -}}
+  {{- $full := $img.Resize (printf "%dx webp q90" $tw) -}}
+  {{- $half := $img.Resize (printf "%dx webp q90" (div $tw 2)) -}}
+  <img src="{{ $full.RelPermalink }}"
+       srcset="{{ $half.RelPermalink }} {{ $half.Width }}w, {{ $full.RelPermalink }} {{ $full.Width }}w"
+       sizes="(max-width: 720px) 100vw, 720px"
+       width="{{ $full.Width }}" height="{{ $full.Height }}"
+       alt="{{ .Text }}"{{ with .Title }} title="{{ . }}"{{ end }}
+       loading="lazy" decoding="async" />
+{{- else -}}
+  <img src="{{ .Destination | safeURL }}" alt="{{ .Text }}"{{ with .Title }} title="{{ . }}"{{ end }} loading="lazy" decoding="async" />
+{{- end -}}
