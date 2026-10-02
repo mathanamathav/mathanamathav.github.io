@@ -1,0 +1,8 @@
+{{- /* {{< cv >}}: the resume as plain HTML, then download / open buttons for the PDF.
+       assets/cv/resume.html is generated from the LaTeX source by scripts/update-cv.sh. */ -}}
+{{- $pdf := "/cv/resume.pdf" -}}
+{{ with resources.Get "cv/resume.html" }}{{ .Content | safeHTML }}{{ end }}
+<div class="cv-actions">
+  <a class="button primary" href="{{ $pdf }}" download="Mathana-Mathav-Resume.pdf">Download PDF</a>
+  <a class="button" href="{{ $pdf }}" target="_blank" rel="noopener">Open in new tab</a>
+</div>
