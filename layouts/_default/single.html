@@ -8,11 +8,21 @@
     </time>
   </i>
 </p>
+{{/* Posts tagged "AI-assisted" get a small, honest note under the date. */}}
+{{ if in (.Params.tags | default slice) "AI-assisted" }}
+<span class="ai-note">Written by me, edited with AI help</span>
+{{ end }}
 {{ end }}{{ end }}
 
 {{/* Cover photo is intentionally NOT rendered in the body. A page-bundle cover.*
      is still auto-detected by the internal opengraph/twitter partials for the
      social card when the post is shared. */}}
+
+{{/* Optional header banner: drop a page-bundle file named header.* to get one.
+     No file, no banner — purely opt-in, no frontmatter needed. */}}
+{{ if eq .Type "blog" }}{{ with .Resources.GetMatch "header.*" }}
+<img class="post-header-image" src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="{{ $.Title }}" loading="eager">
+{{ end }}{{ end }}
 
 {{/* Sticky table of contents — only for blog posts that actually have headings. */}}
 {{ if eq .Type "blog" }}{{ if .Fragments.Headings }}

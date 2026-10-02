@@ -1,0 +1,6 @@
+{{/* Overrides the theme nav: marks the current section with class="active". */}}
+{{ $current := .RelPermalink }}
+{{ range .Site.Menus.main }}
+{{ $active := or (eq $current .URL) (and (ne .URL "/") (hasPrefix $current .URL)) }}
+<a href="{{ .URL }}"{{ if $active }} class="active" aria-current="page"{{ end }}>{{ .Name }}</a>
+{{ end }}
