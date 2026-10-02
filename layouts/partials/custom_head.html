@@ -4,11 +4,12 @@
      1) Warm cream background with warm near-black text (no automatic dark mode).
      2) Heavy, tightly-tracked display headings.
      3) Sticky footer so the theme credit sits at the bottom of the viewport.
-     4) Montserrat for body + headings. -->
+     4) Montserrat for headings + nav, Merriweather for reading text (same as the CV). -->
 <link rel="canonical" href="{{ .Permalink }}" />
 <link rel="preload" href="/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/merriweather-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-  /* Self-hosted Montserrat (variable, latin subset) — no third-party CDN. */
+  /* Self-hosted fonts (latin subset), no third-party CDN. */
   @font-face {
     font-family: "Montserrat";
     font-style: normal;
@@ -16,15 +17,43 @@
     font-display: swap;
     src: url("/fonts/montserrat-latin.woff2") format("woff2");
   }
+  @font-face {
+    font-family: "Merriweather";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/merriweather-latin-400-normal.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Merriweather";
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/merriweather-latin-400-italic.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Merriweather";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("/fonts/merriweather-latin-700-normal.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Merriweather";
+    font-style: italic;
+    font-weight: 700;
+    font-display: swap;
+    src: url("/fonts/merriweather-latin-700-italic.woff2") format("woff2");
+  }
 
   :root {
-    /* Wider content column + larger body text than the theme defaults. */
-    --width: 900px;
-    --font-scale: 1.1em;
+    /* 720px column keeps lines near 65-70 characters, the comfortable reading range. */
+    --width: 720px;
+    --font-scale: 1.125em;
 
-    /* Montserrat overrides the theme's Verdana */
+    /* Theme uses --font-main for headings, --font-secondary for body text. */
     --font-main: "Montserrat", sans-serif;
-    --font-secondary: "Montserrat", sans-serif;
+    --font-secondary: "Merriweather", Georgia, serif;
 
     /* codegraph warm palette */
     --background-color: #f7f6f2;        /* paper */
@@ -81,6 +110,7 @@
   /* Subtle back link shown instead of the masthead on single blog posts. */
   .back-link {
     display: inline-block;
+    font-family: var(--font-main);
     color: #6f6c61;
     font-size: 0.95rem;
     font-weight: 600;
@@ -91,11 +121,166 @@
     text-decoration: none;
   }
 
-  /* Post / list-page title: same size as the masthead wordmark. */
+  /* Post / page title. */
   main > h1 {
-    font-size: 1.5rem;
-    line-height: 1.2;
-    margin: 0.2rem 0 0.3rem;
+    font-size: 1.9rem;
+    line-height: 1.15;
+    margin: 0.4rem 0 0.4rem;
+  }
+  /* Project / link lines that follow a description. */
+  content h3 + p {
+    margin-top: 0.3rem;
+  }
+
+  /* Reading text: Merriweather has a tall x-height, so it needs generous leading. */
+  main {
+    line-height: 1.75;
+  }
+  content p,
+  content li {
+    margin-top: 0;
+    margin-bottom: 1.1em;
+  }
+  content li {
+    margin-bottom: 0.4em;
+  }
+
+  /* Navigation: small Montserrat links, current page in ink. */
+  nav {
+    margin-top: 0.35rem;
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  nav a {
+    color: #6f6c61;
+    margin-right: 1.1rem;
+  }
+  nav a:hover,
+  nav a.active {
+    color: var(--heading-color);
+  }
+
+  /* Blog list: date column + title, stacked on phones. */
+  ul.blog-posts li {
+    margin-bottom: 0.7rem;
+    align-items: baseline;
+  }
+  ul.blog-posts li a {
+    font-family: var(--font-main);
+    font-weight: 600;
+    color: var(--heading-color);
+  }
+  ul.blog-posts li a:visited {
+    color: var(--heading-color);
+  }
+  time {
+    color: #6f6c61;
+    font-size: 0.85rem;
+  }
+
+  /* AI-assisted note on posts tagged "AI-assisted". */
+  .ai-note {
+    display: inline-block;
+    margin: 0 0 1.5rem;
+    padding: 0.15rem 0.6rem;
+    font-family: var(--font-main);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #6f6c61;
+    border: 1px solid #d6d3c8;
+    border-radius: 999px;
+  }
+
+  /* CV page: download button + embedded PDF (desktop) / preview image (phones). */
+  .cv-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 2.5rem 0 0.5rem;
+  }
+  content a.button {
+    display: inline-block;
+    padding: 0.55rem 1.1rem;
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 1.5px solid var(--heading-color);
+    color: var(--heading-color);
+  }
+  content a.button.primary {
+    background: var(--heading-color);
+    color: var(--background-color);
+  }
+  content a.button:hover {
+    text-decoration: none;
+    opacity: 0.85;
+  }
+  /* Resume rendered as HTML (generated from the LaTeX source). */
+  .cv h2 {
+    font-size: 1.15rem;
+    margin: 2rem 0 0.6rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid #d6d3c8;
+  }
+  .cv section:first-child h2 {
+    margin-top: 0;
+  }
+  .cv ul.cv-list {
+    margin: 0;
+    padding-left: 1.1rem;
+  }
+  .cv ul.cv-level-1 > li {
+    margin-bottom: 0.5rem;
+  }
+  .cv li.cv-entry {
+    list-style: none;
+    margin-left: -1.1rem;
+    margin-bottom: 1.1rem;
+  }
+  .cv li.cv-entry > ul {
+    margin-top: 0.4rem;
+  }
+  .cv ul.cv-level-2 > li {
+    margin-bottom: 0.35rem;
+  }
+  .cv-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    column-gap: 1rem;
+  }
+  .cv-row span {
+    color: #6f6c61;
+    font-size: 0.92rem;
+  }
+  .cv-sub em {
+    color: var(--text-color);
+  }
+
+  /* Phones: slightly smaller text, tighter gutters, stacked blog list. */
+  @media (max-width: 600px) {
+    :root {
+      --font-scale: 1.0625em;
+    }
+    body {
+      padding: 16px;
+    }
+    main > h1 {
+      font-size: 1.55rem;
+    }
+    content h2 {
+      font-size: 1.2rem;
+    }
+    ul.blog-posts li {
+      flex-direction: column;
+    }
+    ul.blog-posts li span {
+      flex: none;
+    }
   }
 
   /* Content heading scale + vertical rhythm. Section headings sit clearly BELOW
@@ -127,8 +312,8 @@
   content a {
     color: #a8432f;
     text-decoration: underline;
-    text-decoration-color: #a8432f;
-    text-decoration-thickness: 2px;
+    text-decoration-color: rgba(168, 67, 47, 0.45);
+    text-decoration-thickness: 1.5px;
     text-underline-offset: 3px;
   }
   content a:hover {
@@ -141,6 +326,16 @@
   content img {
     height: auto;
     border-radius: 10px;
+  }
+
+  /* Optional per-post header banner (page-bundle header.* file). Sits above the
+     title, full column width, same rounded-corner language as content images. */
+  .post-header-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
   }
 
   /* Auto-looping clips (video shortcode) match the content images. */
@@ -163,6 +358,7 @@
   }
   .post-toc > summary {
     cursor: pointer;
+    font-family: var(--font-main);
     font-weight: 700;
     color: var(--heading-color);
     letter-spacing: -0.02em;
@@ -205,11 +401,11 @@
   }
 
   /* Wide screens: pin the TOC to the right of the centered content column. */
-  @media (min-width: 1360px) {
+  @media (min-width: 1240px) {
     .post-toc {
       position: fixed;
       top: 8rem;
-      right: max(1rem, calc(50% - 670px));
+      right: max(1rem, calc(50% - 600px));
       width: 200px;
       max-height: 78vh;
       overflow-y: auto;
@@ -263,6 +459,12 @@
 
   footer {
     margin-top: 2rem;
+    font-family: var(--font-main);
+    font-size: 0.85rem;
+    color: #6f6c61;
+  }
+  footer a {
+    color: #6f6c61;
   }
 </style>
 

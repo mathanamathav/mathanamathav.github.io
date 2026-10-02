@@ -8,6 +8,8 @@ enableRobotsTXT = true
   description = "Developer."
   dateFormat = "2006-01-02"
   hideMadeWithLine = false
+  # Site-wide OG/Twitter card fallback for pages without their own cover image.
+  images = ["images/og-default.png"]
 
 [[menu.main]]
   identifier = "home"
@@ -20,6 +22,18 @@ enableRobotsTXT = true
   name = "Blog"
   url = "/blog/"
   weight = 2
+
+[[menu.main]]
+  identifier = "projects"
+  name = "Projects"
+  url = "/projects/"
+  weight = 3
+
+[[menu.main]]
+  identifier = "cv"
+  name = "CV"
+  url = "/cv/"
+  weight = 4
 
 [caches]
   [caches.images]
