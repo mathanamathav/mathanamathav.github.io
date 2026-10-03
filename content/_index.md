@@ -5,7 +5,7 @@ title: "Mathana Mathav A.S"
 Hi, I'm Mathan.
 
 [//]: # (Where I'm from and where I studied)
-I'm from Madurai. I grew up and did all my schooling there, then moved to Coimbatore for five years to do an integrated M.Sc. in Data Science at [PSG College of Technology](https://www.psgtech.edu/).
+I'm from [Madurai](https://en.wikipedia.org/wiki/Madurai), Tamil Nadu, India. I grew up and did all my schooling there, then moved to Coimbatore for five years to do an integrated M.Sc. in Data Science at [PSG College of Technology](https://www.psgtech.edu/).
 
 [//]: # (Work, at a glance)
 These days I'm a founding engineer at [DataGenie](https://www.datagenie.ai/). It's a small team full of people with very different perspectives, and there's always something new to figure out. Before that, in my third year of college, I interned at [ZeroDown](https://www.ycombinator.com/companies/zerodown), a YC startup. That was my first taste of working with experienced engineers, in a real production environment, at a startup.
