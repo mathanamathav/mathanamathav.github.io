@@ -179,13 +179,7 @@
     font-size: 0.85rem;
   }
 
-  /* Home page: italic tagline, round profile photo beside the intro. */
-  .tagline {
-    font-style: italic;
-    font-size: 1.35rem;
-    color: var(--heading-color);
-    margin: 0.2rem 0 1.6rem;
-  }
+  /* Home page: round profile photo beside the intro. */
   .profile-photo {
     float: right;
     width: 200px;
@@ -196,66 +190,6 @@
     shape-outside: circle(50%);
   }
 
-  /* Home page photo strip: swipe on phones, arrow buttons on desktop. */
-  .photo-carousel {
-    clear: both;
-    margin: 2rem 0 1.5rem;
-  }
-  .photo-track {
-    display: flex;
-    gap: 0.75rem;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    padding-bottom: 0.2rem;
-  }
-  .photo-track::-webkit-scrollbar {
-    display: none;
-  }
-  .photo-track:focus-visible {
-    outline: 2px solid var(--heading-color);
-    outline-offset: 4px;
-  }
-  .photo {
-    flex: 0 0 auto;
-    margin: 0;
-    scroll-snap-align: start;
-  }
-  .photo img {
-    display: block;
-    height: 320px;
-    width: auto;
-    border-radius: 10px;
-  }
-  .photo figcaption {
-    margin-top: 0.35rem;
-    font-family: var(--font-main);
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #6f6c61;
-  }
-  .photo-nav {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.5rem;
-    margin-top: 0.4rem;
-  }
-  .photo-nav[hidden] {
-    display: none;
-  }
-  .photo-nav button {
-    width: 2.2rem;
-    height: 2.2rem;
-    border: 1.5px solid var(--heading-color);
-    border-radius: 50%;
-    background: transparent;
-    color: var(--heading-color);
-    font-size: 1rem;
-  }
-  .photo-nav button:hover {
-    background: var(--heading-color);
-    color: var(--background-color);
-  }
   .last-updated {
     font-family: var(--font-main);
     font-size: 0.85rem;
@@ -355,18 +289,12 @@
     main > h1 {
       font-size: 1.55rem;
     }
-    .tagline {
-      font-size: 1.15rem;
-    }
     .profile-photo {
       float: none;
       display: block;
       width: 140px;
       height: 140px;
       margin: 0 auto 1.4rem;
-    }
-    .photo img {
-      height: 240px;
     }
     content h2 {
       font-size: 1.2rem;

@@ -1,7 +1,6 @@
 {{/* Home page: title is just the site name (avoids "Name | Name" duplication). */}}
 {{ define "title" }}{{ .Site.Title }}{{ end }}
 {{ define "main" }}
-{{ with .Site.Params.tagline }}<p class="tagline">{{ . }}</p>{{ end }}
 {{/* Profile photo floats beside the intro on wide screens, sits above it on phones. */}}
 {{ with resources.Get "images/profile.jpg" }}
 {{ $sm := .Resize "200x webp q85" }}

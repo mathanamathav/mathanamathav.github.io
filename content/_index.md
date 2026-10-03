@@ -19,9 +19,7 @@ It's a strange, exciting time to be a software developer. It's easy to get overw
 [//]: # (Why this site exists)
 I'm building this site to document what I work on, so that in a few years I can look back and see how I, and my thinking, have changed.
 
-[//]: # (Photos, then when the site last changed)
-{{< photos >}}
-
+[//]: # (When the site last changed)
 {{< last-updated >}}
 
 Feel free to reach out: [mathanamathavas@gmail.com](mailto:mathanamathavas@gmail.com)

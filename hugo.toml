@@ -8,8 +8,6 @@ enableGitInfo = true
 
 [params]
   description = "Developer."
-  # Italic line under the name on the home page.
-  tagline = "Developer / Builder / Tinkerer"
   dateFormat = "2006-01-02"
   hideMadeWithLine = false
   # Site-wide OG/Twitter card fallback for pages without their own cover image.
