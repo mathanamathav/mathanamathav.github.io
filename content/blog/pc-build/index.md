@@ -3,6 +3,7 @@ title: "Finally built a PC for myself in 2026 🫪"
 date: 2026-06-21
 description: "How I built a budget gaming PC in 2026's brutal parts market: my constraints, the trade-offs, and a used RTX 3060 that saved the build."
 tags: ["PC Build", "Gaming", "AI-assisted"]
+summary: "Doing something I'd been procrastinating on for a long time."
 images: ["icon.png"]
 ---
 

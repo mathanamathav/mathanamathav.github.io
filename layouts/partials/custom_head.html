@@ -97,6 +97,10 @@
 
   /* Site masthead: a consistent wordmark on every page (theme's .title h1 rule
      never applied because the markup is an <h2>). */
+  .title {
+    display: block;
+    text-align: center;
+  }
   .title h2 {
     font-size: 1.5rem;
     font-weight: 800;
@@ -146,7 +150,12 @@
   }
 
   /* Navigation: small Montserrat links, current page in ink. */
+  /* Centered masthead: name on top, nav links evenly spaced below. */
   nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem 1.1rem;
     margin-top: 0.35rem;
     font-family: var(--font-main);
     font-size: 0.95rem;
@@ -154,29 +163,75 @@
   }
   nav a {
     color: #6f6c61;
-    margin-right: 1.1rem;
+    margin-right: 0;
   }
   nav a:hover,
   nav a.active {
     color: var(--heading-color);
   }
 
-  /* Blog list: date column + title, stacked on phones. */
+  /* Blog list: date, title, then a short summary, one post per block.
+     Title is the largest element; summary is smaller and muted; clear gap between posts. */
+  ul.blog-posts {
+    margin-top: 0.5rem;
+  }
   ul.blog-posts li {
-    margin-bottom: 0.7rem;
-    align-items: baseline;
+    display: block;
+    margin-bottom: 2.6rem;
   }
-  ul.blog-posts li a {
+  ul.blog-posts li time {
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+  content ul.blog-posts li a.post-title {
+    display: inline;
     font-family: var(--font-main);
-    font-weight: 600;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.25;
+    color: var(--heading-color);
+    text-decoration: none;
+  }
+  content ul.blog-posts li a.post-title:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--heading-color);
+  }
+  ul.blog-posts li a.post-title:visited {
     color: var(--heading-color);
   }
-  ul.blog-posts li a:visited {
-    color: var(--heading-color);
+  .post-summary {
+    margin: 0.45rem 0 0;
+    font-size: 0.95em;
+    line-height: 1.6;
+    color: #56544a;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   time {
     color: #6f6c61;
+    font-family: var(--font-main);
     font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  /* Home page: round profile photo beside the intro. */
+  .profile-photo {
+    float: right;
+    width: 200px;
+    height: 200px;
+    margin: 0.3rem 0 1rem 2rem;
+    border-radius: 50%;
+    object-fit: cover;
+    shape-outside: circle(50%);
+  }
+
+  .last-updated {
+    font-family: var(--font-main);
+    font-size: 0.85rem;
+    color: #6f6c61;
   }
 
   /* AI-assisted note on posts tagged "AI-assisted". */
@@ -272,14 +327,18 @@
     main > h1 {
       font-size: 1.55rem;
     }
-    content h2 {
+    content ul.blog-posts li a.post-title {
       font-size: 1.2rem;
     }
-    ul.blog-posts li {
-      flex-direction: column;
+    .profile-photo {
+      float: none;
+      display: block;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 1.4rem;
     }
-    ul.blog-posts li span {
-      flex: none;
+    content h2 {
+      font-size: 1.2rem;
     }
   }
 

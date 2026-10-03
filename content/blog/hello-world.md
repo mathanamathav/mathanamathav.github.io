@@ -2,6 +2,7 @@
 title: "Hello World 🤖"
 date: 2025-10-02
 tags: ["First Post"]
+summary: "We have to start somewhere: a small step in the right direction."
 ---
 
 This is my very first blog post. Think of it as a small step into trying out new things. Upcoming posts will be about my journey of learning, experimenting, and gaining fresh insights. I'll also share some of the problems I try to solve in day to day life. Nothing revolutionary, just steady 0.1% improvements each day.
