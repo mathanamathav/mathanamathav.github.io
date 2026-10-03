@@ -38,7 +38,7 @@ scripts/update-cv.sh              # refresh the CV PDF + HTML from ../Latex_Resu
 
 - Add a blog post: create `content/blog/<slug>.md` with front matter `title`, `date`, `tags`.
 - Add a page: create `content/<name>.md` with front matter `title`; add a `[[menu.main]]` entry in `hugo.toml` if it should appear in the nav.
-- Keep front matter minimal: `title`, `date`, `tags`. No `layout`/`permalink` (Hugo handles routing).
+- Keep front matter minimal: `title`, `date`, `tags`. Optional: `summary` (one line shown under the title on the blog list) and `description` (search engines and link previews). No `layout`/`permalink` (Hugo handles routing).
 - Don't edit the theme submodule. To restyle, edit `layouts/partials/custom_head.html`.
 - Update the CV: `scripts/update-cv.sh [path-to-Latex_Resume]` rebuilds the LaTeX resume, copies the PDF into `static/cv/`, regenerates `assets/cv/resume.html` with `scripts/tex2html.py`.
 - Home page extras: profile photo at `assets/images/profile.jpg`; `{{< last-updated >}}` shows the newest git commit date (`enableGitInfo`).

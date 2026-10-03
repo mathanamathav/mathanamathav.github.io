@@ -6,8 +6,8 @@
     <a href="{{ "blog" | relURL }}">Remove filter</a>
   </small>
   {{ end }}
-  {{/* Each post: date, title, then a one or two line summary
-       (front matter "description" if set, otherwise the opening of the post). */}}
+  {{/* Each post: date, title, then a one or two line summary: front matter
+       "summary" if set, else "description", else the opening of the post. */}}
   <ul class="blog-posts">
     {{ range .Pages }}
     <li>
@@ -15,7 +15,7 @@
         {{ .Date.Format (default "02 Jan, 2006" .Site.Params.dateFormat) }}
       </time>
       <a class="post-title" href="{{ .Permalink }}">{{ .Title }}</a>
-      <p class="post-summary">{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | htmlUnescape | truncate 180 }}{{ end }}</p>
+      <p class="post-summary">{{ with .Params.summary }}{{ . }}{{ else }}{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | htmlUnescape | truncate 180 }}{{ end }}{{ end }}</p>
     </li>
     {{ else }}
     <li>
