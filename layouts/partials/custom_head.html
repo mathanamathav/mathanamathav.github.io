@@ -170,28 +170,40 @@
     color: var(--heading-color);
   }
 
-  /* Blog list: date column + title, stacked on phones. */
+  /* Blog list: date, title, then a short summary, one post per block. */
   ul.blog-posts li {
-    margin-bottom: 0.7rem;
-    align-items: baseline;
+    display: block;
+    margin-bottom: 1.9rem;
   }
-  ul.blog-posts li a {
+  ul.blog-posts li time {
+    display: block;
+  }
+  ul.blog-posts li a.post-title {
+    display: inline-block;
+    margin: 0.1rem 0 0.25rem;
     font-family: var(--font-main);
-    font-weight: 600;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
     color: var(--heading-color);
   }
-  ul.blog-posts li a:visited {
+  ul.blog-posts li a.post-title:visited {
     color: var(--heading-color);
+  }
+  .post-summary {
+    margin: 0;
+    color: var(--text-color);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   time {
     color: #6f6c61;
     font-family: var(--font-main);
     font-size: 0.85rem;
     font-weight: 500;
-  }
-  /* Room for the longest date, e.g. "21 September 2026". */
-  ul.blog-posts li span {
-    flex: 0 0 10.5rem;
   }
 
   /* Home page: round profile photo beside the intro. */
@@ -313,12 +325,6 @@
     }
     content h2 {
       font-size: 1.2rem;
-    }
-    ul.blog-posts li {
-      flex-direction: column;
-    }
-    ul.blog-posts li span {
-      flex: none;
     }
   }
 
