@@ -15,6 +15,7 @@ ARGC = {"href": 2, "textbf": 1, "textit": 1, "emph": 1}
 DROP = {"LARGE", "Large", "large", "small", "centering", "par", "noindent", "hfill"}
 SPACE = {"enspace", "quad", "qquad", " "}
 ESCAPED = {"&": "&amp;", "%": "%", "_": "_", "#": "#", "$": "$", "{": "{", "}": "}"}
+SYMBOLS = {"textasciitilde": "~", "textbar": "|", "ldots": "…"}
 
 
 def read_group(s, i):
@@ -69,6 +70,10 @@ def inline(s):
                 if i < len(s) and s[i] == "[":
                     i = s.index("]", i) + 1
                 out.append("<br>")
+            elif name in SYMBOLS:
+                if i < len(s) and s[i : i + 2] == "{}":
+                    i += 2
+                out.append(SYMBOLS[name])
             elif name in SPACE:
                 out.append(" ")
             elif name in DROP:
