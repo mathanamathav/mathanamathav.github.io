@@ -97,6 +97,10 @@
 
   /* Site masthead: a consistent wordmark on every page (theme's .title h1 rule
      never applied because the markup is an <h2>). */
+  .title {
+    display: block;
+    text-align: center;
+  }
   .title h2 {
     font-size: 1.5rem;
     font-weight: 800;
@@ -146,7 +150,12 @@
   }
 
   /* Navigation: small Montserrat links, current page in ink. */
+  /* Centered masthead: name on top, nav links evenly spaced below. */
   nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem 1.1rem;
     margin-top: 0.35rem;
     font-family: var(--font-main);
     font-size: 0.95rem;
@@ -154,7 +163,7 @@
   }
   nav a {
     color: #6f6c61;
-    margin-right: 1.1rem;
+    margin-right: 0;
   }
   nav a:hover,
   nav a.active {
