@@ -41,6 +41,7 @@ scripts/update-cv.sh              # refresh the CV PDF + HTML from ../Latex_Resu
 - Keep front matter minimal: `title`, `date`, `tags`. No `layout`/`permalink` (Hugo handles routing).
 - Don't edit the theme submodule. To restyle, edit `layouts/partials/custom_head.html`.
 - Update the CV: `scripts/update-cv.sh [path-to-Latex_Resume]` rebuilds the LaTeX resume, copies the PDF into `static/cv/`, regenerates `assets/cv/resume.html` with `scripts/tex2html.py`.
+- Home page extras: tagline from `params.tagline` in `hugo.toml`; profile photo at `assets/images/profile.jpg`; photo strip via `{{< photos >}}` reading `data/photos.yaml` (images in `assets/images/photos/`, always strip metadata first: `magick IN.jpg -auto-orient -resize '1600x1600>' -strip -quality 82 OUT.jpg`); `{{< last-updated >}}` shows the newest git commit date (`enableGitInfo`).
 - Posts written with AI editing help get the tag `AI-assisted`; the post template then shows a small "Written by me, edited with AI help" note under the date.
 - Writing style: plain, first person, no em dashes or stacked hyphen chains.
 

@@ -3,9 +3,13 @@ languageCode = "en-us"
 title = "Mathana Mathav A.S"
 theme = "hugo-bearblog"
 enableRobotsTXT = true
+# Page "last modified" dates come from git history (used by the home page "Last updated" line).
+enableGitInfo = true
 
 [params]
   description = "Developer."
+  # Italic line under the name on the home page.
+  tagline = "Developer / Builder / Tinkerer"
   dateFormat = "2006-01-02"
   hideMadeWithLine = false
   # Site-wide OG/Twitter card fallback for pages without their own cover image.

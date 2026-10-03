@@ -47,3 +47,23 @@
   update();
 })();
 </script>
+
+<!-- Photo strip: show the arrow buttons only when there is more to scroll, and scroll one screen at a time. -->
+<script>
+(function () {
+  document.querySelectorAll(".photo-carousel").forEach(function (carousel) {
+    var track = carousel.querySelector(".photo-track");
+    var nav = carousel.querySelector(".photo-nav");
+    if (!track || !nav) return;
+    var step = function (dir) {
+      track.scrollBy({ left: dir * track.clientWidth * 0.8, behavior: "smooth" });
+    };
+    carousel.querySelector(".photo-prev").addEventListener("click", function () { step(-1); });
+    carousel.querySelector(".photo-next").addEventListener("click", function () { step(1); });
+    var refresh = function () { nav.hidden = track.scrollWidth <= track.clientWidth + 4; };
+    window.addEventListener("resize", refresh, { passive: true });
+    window.addEventListener("load", refresh);
+    refresh();
+  });
+})();
+</script>
